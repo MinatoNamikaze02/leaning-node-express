@@ -1,9 +1,7 @@
 
 const express = require('express')
 const cors = require('cors')
-
 const app = express()
-
 app.use(express.json())
 app.use(cors())
 let notes = [
@@ -59,15 +57,15 @@ const generateId = () => {
 
 app.post('/api/notes', (request, response) => {
     const checkNote = request.body
-    
-    if(!body.content){
+    console.log(checkNote)
+    if(!checkNote.content){
         return response.status(400).json({
             error: 'Content Missing'
         })
     }
     const note = {
-        content: body.content,
-        important: body.important || false,
+        content: checkNote.content,
+        important: checkNote.important || false,
         date:  new Date(),
         id: generateId(),
     }
